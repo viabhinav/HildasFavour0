@@ -3,10 +3,10 @@
 {% block title %}Application Page{% endblock %}
 {% block content %}
 <br>
-<form>
+<form action="/processform" method="GET">
 <h1>Form for some stuff</h1><br><br>
-<div class="form-inline">   
-<h5>Name:    </h5>    <input type="text">
-</div>
+<h5>Name:    </h5>    <input type="text" name="name">
+<br><h5>Why do you want to apply?</h5><input type="text" name="why"><br>
+<br><input type="submit">
 <form>
 {% endblock %}
