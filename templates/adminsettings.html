@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+Settings
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<h1>Website settings</h1>
+<form action="/admin/processsettings" method="POST">
+<br><br><h3>Webhook Settings</h3>
+<label>Webhook URL     :</label>    <input type="text" name="webhookurl" value="{{webhookurl}}">
+<br>
+<label>Webhook Enable? </label>
+<input type="radio" id="en1" name="webhook" value="enable"{% if weben %}checked{% endif %}>
+<label for="male">On</label>
+<input type="radio" id="en2" name="webhook" value="disable"{% if not weben %}checked{% endif %}>
+<label for="female">Off</label><br>
+<br>
+<h3>Applications Settings</h3>
+<label>Enable Applications?     :</label>
+<input type="radio" id="en1" name="apps" value="enable"{% if appsen %}checked{% endif %}>
+<label for="male">On</label>   
+<input type="radio" id="en2" name="apps" value="disable"{% if not appsen %}checked{% endif %}>
+<label for="female">Off</label><br>
+<br>
+<input type="submit">
+</form>
+{% endblock %}

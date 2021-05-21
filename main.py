@@ -39,8 +39,10 @@ if conf.get("MASTERPASS") == False:
     conf.set("MASTERPASS", "defpass")
 if conf.get("VIEWS") == False:
     conf.set("VIEWS", 0)
+if conf.get("WEBEN") == False:
+    conf.set("WEBEN", True)
 
-
+WEBEN=conf.get('WEBEN')
 WEBHOOK_URL = conf.get("WEBHOOK_URL")
 ADMINCOOKIE = conf.get('ADMINCOOKIE')
 MASTERKEY = conf.get("MASTERKEY")
@@ -49,6 +51,7 @@ print(WEBHOOK_URL)
 
 app = Flask("Hilda's Favour")
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['DEBUG'] = True
 
 def addviews(no = 1):
     conf.set('VIEWS', int(conf.get('VIEWS'))+int(no))
@@ -155,4 +158,32 @@ def adminlogin():
     else:
         return render_template('adminlogin.html')
 
-app.run(host="0.0.0.0")
+@app.route('/api/admin/views')
+def getviewsapi():
+    return str(conf.get('VIEWS'))
+
+@app.route('/admin/dashboard/settings')
+def sett():
+    if appsopen:
+        appsen = True
+    else:
+        appsen = False
+    return render_template('adminsettings.html', appsen=appsen, webhookurl=WEBHOOK_URL, weben=WEBEN)
+
+@app.route('/admin/processsettings', methods=['GET', 'POST'])
+def processlogin():
+    webx = request.form.get('webhook')
+    global appsopen
+    global WEBHOOK_URL
+    if webx == "enable":
+        WEBEN=True
+    else:
+        WEBEN = False
+    WEBHOOK_URL = request.form.get('webhookurl')
+    if request.form.get('apps') == "enable":
+        appsopen=True
+    else:
+        appsopen=False
+    return 'Done'
+
+app.run(host="0.0.0.0", port=5000)

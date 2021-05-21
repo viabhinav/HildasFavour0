@@ -5,13 +5,24 @@ Admin Dashboard
 {% endblock %}
 {% block content %}
 <br><br>
+<script>
+  timer = setInterval(function() { 
+    x = fetch("http://localhost:5000/api/admin/views").then(function (response) {
+        //document.getElementById("views").innerHTML = response.text();
+        console.log("Hey!");
+        return response.text();
+      }).then(function (myJson) {
+        document.getElementById("views").innerHTML = "Live views of the website: " + myJson;
+  })
+}, 5000);
+</script>
 <h1>Admin Dashboard</h1><br><h4>Welcome, Hilda!</h4><br><br>
 {% if alert %}
 <div class="alert alert-{{type}}">
   {{alert}}
 </div>
 {% endif %}
-<h6>Views of the website: {{views}}</h6>
+<h6 id="views">Live views of the website: {{views}}</h6>
 <br><br>
-<button>Change settings</button>
+<button><a href="/admin/dashboard/settings">Change settings</a></button>
 {% endblock %}
