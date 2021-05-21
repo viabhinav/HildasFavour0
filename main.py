@@ -151,7 +151,7 @@ def adminlogin():
             resp.set_cookie(ADMINCOOKIE, MASTERKEY)
             return resp
         else:
-            return render_template('adminlogin.html', alert="Incorrect Password", type="danger")
+            return render_template('adminlogin.html', alerts=zip(["Incorrect password lol"], ["danger"]))
     else:
         return render_template('adminlogin.html')
 
