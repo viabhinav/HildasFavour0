@@ -2,7 +2,30 @@
 {% block heading %}Prototype{% endblock %}
 {% block content %}
 <br>
+<style>
+.expandhover {
+  max-width: 1000;
+  max-height: 1000;
+  -webkit-transition: max-width 1s;
+  transition: max-width 1s;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.expandhover:hover {
+  width: 15rem;
+  height: 15rem;
+}
+
+</style>
 <h1>Welcome To Hilda's Prototype</h1>
 <br>
-<a href="application"><button>Just a Button</button></a>
+<iframe width="660" height="371" src="https://www.youtube.com/embed/yp7Mqp-X2wk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><br><br>
+{% if appsopen == "yes" %}
+<a href="application" class="expandhoverx"><button>Fill application form</button></a>
+{% else %}
+<h5>Apps Closed!</h5>
+{% endif %}
 {% endblock %}

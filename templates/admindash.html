@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block heading %}Prototype Admin Dash{% endblock %}
+{% block title %}
+Admin Dashboard
+{% endblock %}
+{% block content %}
+<br><br>
+<h1>Admin Dashboard</h1><br><h4>Welcome, Hilda!</h4><br><br>
+{% if alert %}
+<div class="alert alert-{{type}}">
+  {{alert}}
+</div>
+{% endif %}
+<h6>Views of the website: {{views}}</h6>
+<br><br>
+<button>Change settings</button>
+{% endblock %}

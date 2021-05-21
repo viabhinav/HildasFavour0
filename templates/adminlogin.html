@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block heading %}Prototype Admin Login{% endblock %}
+{% block title %}
+Admin Login
+{% endblock %}
+{% block content %}
+<br><br>
+<form action="" method="POST">
+<h1>ADMIN LOGIN LOL</h1><br><br>
+{% if alert %}
+<div class="alert alert-{{type}}">
+  {{alert}}
+</div>
+{% endif %}<br>
+<label>Password?:  </label><input type="password" name="password"><br><br>
+<input type="submit">
+</form>
+{% endblock %}
